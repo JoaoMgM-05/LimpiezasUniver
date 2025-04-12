@@ -1,0 +1,132 @@
+/* src/index.css */
+
+/* ... (tus imports y @tailwind directives) ... */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-size: 20px;
+    }
+    body {
+        @apply font-sans text-brand-dark;
+    }
+}
+
+/* --- Estilos para Swiper --- */
+
+@keyframes jump {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes crawl-perimeter {
+    0% { /* Empieza oculto arriba a la izquierda (debajo del header) */
+        top: 60px; /* Ajusta altura header */
+        left: -5%;
+        transform: rotate(90deg);
+        opacity: 0;
+    }
+    2% { /* Aparece arriba a la izquierda */
+        top: 60px; /* Ajusta altura header */
+        left: -5px;
+        transform: rotate(90deg);
+        opacity: 0.7;
+    }
+    23% { /* Llega arriba a la derecha */
+        top: 60px; /* Ajusta altura header */
+        left: calc(100% - 50px); /* Ajusta tamaño insecto + margen */
+        transform: rotate(90deg);
+        opacity: 0.7;
+    }
+    25% { /* Gira para mirar hacia abajo */
+        top: 60px; /* Ajusta altura header */
+        left: calc(100% - 50px); /* Corregido: usar 100% no 100vh */
+        transform: rotate(180deg);
+        opacity: 0.7;
+    }
+    /* Usa var(--doc-height) para la posición inferior */
+    48% { /* Llega abajo a la derecha (encima del footer) */
+        top: calc(var(--doc-height, 100vh) - 140px); /* Ajusta 80px a offset del footer */
+        left: calc(100% - 50px); /* Corregido: usar 100% no 100vh */
+        transform: rotate(180deg);
+        opacity: 0.7;
+    }
+    /* Usa var(--doc-height) para la posición inferior */
+    50% { /* Gira para mirar a la izquierda */
+        top: calc(var(--doc-height, 100vh) - 140px); /* Ajusta offset footer */
+        left: calc(100% - 50px);
+        transform: rotate(270deg);
+        opacity: 0.7;
+    }
+    /* Usa var(--doc-height) para la posición inferior */
+    73% { /* Llega abajo a la izquierda */
+        top: calc(var(--doc-height, 100vh) - 140px); /* Ajusta offset footer */
+        left: 10px;
+        transform: rotate(270deg);
+        opacity: 0.7;
+    }
+    /* Usa var(--doc-height) para la posición inferior */
+    75% { /* Gira para mirar hacia arriba */
+        top: calc(var(--doc-height, 100vh) - 140px); /* Ajusta offset footer */
+        left: 10px;
+        transform: rotate(0deg);
+        opacity: 0.7;
+    }
+    98% { /* Llega arriba a la izquierda (casi al inicio) */
+        top: 60px; /* Ajusta altura header */
+        left: 10px;
+        transform: rotate(0deg);
+        opacity: 0.7;
+    }
+    100% { /* Desaparece arriba a la izquierda */
+        top: 60px; /* Ajusta altura header */
+        left: -5%;
+        transform: rotate(0deg);
+        opacity: 0;
+    }
+}
+
+.mySwiper .swiper-pagination-bullet {
+        background-color: #C2B280; /* Color Sand para inactivos */
+        opacity: 1;
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+    background-color: #50C878;
+    animation: jump 0.4s ease-out;
+}
+
+    /* Posición de la paginación */
+.mySwiper .swiper-pagination {
+    transform: translateY(15px);
+}
+
+    /* Flechas de navegación */
+.mySwiper .swiper-button-next,
+.mySwiper .swiper-button-prev {
+    color: #50C878;
+    animation: float 6s ease-in-out infinite;
+}
+
+.mySwiper .swiper-button-next {
+    transform: translateX(13px);
+}
+.mySwiper .swiper-button-prev {
+    transform: translateX(-13px);
+}
+
+    /* Opcional: Color al pasar el ratón */
+.my-mySwiper .swiper-button-next:hover,
+.mySwiper .swiper-button-prev:hover {
+    color: #086E4F; /* Color Forest para hover */
+}
+
+
+
+
