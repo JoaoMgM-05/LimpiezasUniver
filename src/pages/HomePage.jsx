@@ -2,7 +2,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { BuildingOffice2Icon, HomeIcon, BugAntIcon } from '@heroicons/react/24/outline'; // Asegúrate de importar los iconos que uses
+import { BuildingOffice2Icon, HomeIcon, BugAntIcon } from '@heroicons/react/24/outline';
+import { GiCheckMark } from "react-icons/gi";
 import TestimonialSlider from '../components/testimonialslider';
 import { motion } from 'framer-motion';
 
@@ -110,21 +111,33 @@ function HomePage() {
                     className="bg-brand-ivory p-8 md:p-12 rounded-lg shadow-md" // Mueve las clases aquí
                 >
                     <h2 className="text-3xl font-bold text-center text-brand-dark mb-8">¿Por Qué Confiar en Limpiezas Univer?</h2>
+                    
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                        {/* ... (Contenido Why Us) ... */}
+
                         <div>
-                            {/* Puedes añadir iconos aquí */}
-                            <h3 className="text-xl font-semibold text-brand-dark mb-2">Profesionalidad</h3>
+                            <h3 className="text-xl font-semibold text-brand-dark mb-2 flex items-center justify-center">
+                                <GiCheckMark className='text-brand-emerald h-5 w-5 mr-2 flex-shrink-0'/>
+                                Profesionalidad
+                            </h3>
                             <p className="text-brand-dark opacity-80">Equipo cualificado, productos homologados y técnicas eficientes.</p>
                         </div>
+
                         <div>
-                            <h3 className="text-xl font-semibold text-brand-dark mb-2">Compromiso</h3>
+                            <h3 className="text-xl font-semibold text-brand-dark mb-2 flex items-center justify-center">
+                                <GiCheckMark className='text-brand-emerald h-5 w-5 mr-2 flex-shrink-0'/>
+                                Compromiso
+                            </h3>
                             <p className="text-brand-dark opacity-80">Adaptabilidad a tus horarios y necesidades. Satisfacción garantizada.</p>
                         </div>
+
                         <div>
-                            <h3 className="text-xl font-semibold text-brand-dark mb-2">Confianza</h3>
+                            <h3 className="text-xl font-semibold text-brand-dark mb-2 flex items-center justify-center"> 
+                                <GiCheckMark className='text-brand-emerald h-5 w-5 mr-2 flex-shrink-0'/>
+                                Confianza
+                            </h3>
                             <p className="text-brand-dark opacity-80">Empresa registrada con años de experiencia en el sector.</p>
                         </div>
+
                     </div>
                 </motion.section>
 

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { BugAntIcon, ExclamationTriangleIcon, ShieldCheckIcon, LightBulbIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 
-// Variantes de animación
+// Variantes de animación (sin cambios)
 const sectionVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -20,20 +20,19 @@ function CockroachPage() {
         <>
             <Helmet>
                 <title>Control y Eliminación de Cucarachas - Limpiezas Univer</title>
-                <meta name="description" content="Servicio profesional para eliminar cucarachas (alemana, oriental, americana) en hogares y negocios de [Tu Ciudad/Área]. Tratamientos seguros y garantizados." />
-                {/* <meta name="keywords" content="eliminar cucarachas, control cucarachas, fumigar cucarachas, plaga cucarachas, [Tu Ciudad]" /> */}
+                {/* ¡Personaliza [Tu Ciudad/Área]! */}
+                <meta name="description" content="Servicio profesional para eliminar cucarachas (alemana, oriental, americana) en hogares y negocios de todo Madrid. Tratamientos seguros y garantizados." />
             </Helmet>
 
             <div className="space-y-12 md:space-y-16 overflow-x-hidden">
 
-                {/* --- Sección Hero Específica --- */}
+                {/* --- Sección Hero Específica (sin cambios) --- */}
                 <motion.section
                     initial="hidden"
                     animate="visible"
                     variants={sectionVariants}
                     className="bg-brand-ivory rounded-lg shadow p-8 md:p-12 text-center md:text-left md:flex md:items-center md:gap-8"
                 >
-                    {/* Podrías usar una imagen específica de cucaracha (con advertencia) o mantener el icono genérico */}
                     <BugAntIcon className="h-16 w-16 md:h-24 md:w-24 text-brand-emerald mx-auto md:mx-0 mb-4 md:mb-0 flex-shrink-0" />
                     <div>
                         <h1 className="text-3xl md:text-4xl font-bold text-brand-dark mb-3">Eliminación Profesional de Cucarachas</h1>
@@ -41,7 +40,7 @@ function CockroachPage() {
                             Las cucarachas son una plaga resistente y portadora de enfermedades. Ofrecemos tratamientos efectivos y seguros para erradicarlas de tu propiedad y prevenir su regreso.
                         </p>
                         <Link
-                            to="/cotizacion" // Puedes añadir parámetros si quieres preseleccionar el servicio
+                            to="/cotizacion"
                             className="bg-brand-emerald hover:bg-brand-deep-forest text-white font-bold py-2 px-6 rounded-lg transition duration-300 inline-block shadow hover:shadow-lg"
                         >
                             Solicitar Tratamiento Cucarachas
@@ -49,7 +48,7 @@ function CockroachPage() {
                     </div>
                 </motion.section>
 
-                {/* --- Sección Problemas y Riesgos --- */}
+                {/* --- Sección Problemas y Riesgos (sin cambios) --- */}
                 <motion.section
                     variants={sectionVariants}
                     initial="hidden"
@@ -58,6 +57,7 @@ function CockroachPage() {
                 >
                     <h2 className="text-2xl md:text-3xl font-bold text-brand-dark mb-6 text-center">¿Por Qué son un Problema las Cucarachas?</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Contenido sin cambios */}
                         <div className="bg-white p-6 rounded-lg shadow border border-gray-200">
                             <ExclamationTriangleIcon className="h-8 w-8 text-red-500 mb-3" />
                             <h3 className="font-semibold text-lg mb-1 text-brand-dark">Riesgos para la Salud</h3>
@@ -81,7 +81,7 @@ function CockroachPage() {
                     </div>
                 </motion.section>
 
-                {/* --- Sección Nuestro Tratamiento --- */}
+                {/* --- Sección Nuestro Tratamiento (sin cambios) --- */}
                 <motion.section
                     variants={sectionVariants}
                     initial="hidden"
@@ -109,7 +109,7 @@ function CockroachPage() {
                     </ol>
                 </motion.section>
 
-                {/* --- Sección Consejos de Prevención --- */}
+                {/* --- Sección Consejos de Prevención (sin cambios) --- */}
                 <motion.section
                     variants={sectionVariants}
                     initial="hidden"
@@ -118,6 +118,7 @@ function CockroachPage() {
                 >
                     <h2 className="text-2xl md:text-3xl font-bold text-brand-dark mb-6 text-center">Consejos para Prevenir Cucarachas</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Contenido sin cambios */}
                         <div className="bg-white p-4 rounded-lg shadow border border-gray-200 flex items-start gap-3">
                             <LightBulbIcon className="h-6 w-6 text-yellow-500 flex-shrink-0 mt-1" />
                             <p className="text-sm text-brand-dark opacity-90"><span className="font-semibold">Higiene Extrema:</span> Limpia restos de comida y grasa inmediatamente. No dejes platos sucios. Saca la basura regularmente.</p>
@@ -138,7 +139,7 @@ function CockroachPage() {
                 </motion.section>
 
 
-                 {/* --- Sección CTA Específica --- */}
+                 {/* --- Sección CTA Específica (sin cambios) --- */}
                 <motion.section
                     variants={sectionVariants}
                     initial="hidden"

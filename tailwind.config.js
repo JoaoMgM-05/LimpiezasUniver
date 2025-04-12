@@ -21,7 +21,10 @@ export default {
         'brand-ivory': '#FFFFF0',
         'brand-beige': '#F7E7CE',
         'brand-sand': '#C2B280',
-        'brand-brown': '#5D4037'
+        'brand-brown': '#5D4037',
+        'instagramPink': '#E1306C',
+        'blueFacebook': '#17A9FD',
+        'blueLinkedIn': '#0077B5'
       },
       // --- Añade estas secciones ---
       keyframes: {

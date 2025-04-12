@@ -2,10 +2,13 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { BugAntIcon, ShieldCheckIcon, BeakerIcon, HomeModernIcon, BuildingOfficeIcon } from '@heroicons/react/24/outline';
+import { BugAntIcon, ShieldCheckIcon, BeakerIcon, HomeModernIcon } from '@heroicons/react/24/outline';
+import { GiWoodBeam, GiWaspSting, GiInsectJaws, GiLongAntennaeBug, GiRat, GiAnt } from "react-icons/gi"; // Game Icons
 import { motion } from 'framer-motion';
+import { commonPests } from '../../data/pestControlData'; // Ajusta la ruta si es necesario
 
-// Variantes de animación (puedes reutilizar las mismas)
+
+// Variantes de animación (sin cambios)
 const sectionVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -15,29 +18,42 @@ const sectionVariants = {
     }
 };
 
-// Datos de ejemplo para plagas comunes (añade linkTo cuando crees las páginas)
-const commonPests = [
-    { name: "Cucarachas", description: "Tratamientos efectivos contra todas las especies comunes.", icon: BugAntIcon /* O un icono más específico */, linkTo: "/servicios/control-plagas/cucarachas" },
-    { name: "Roedores (Ratas y Ratones)", description: "Soluciones de desratización seguras y discretas.", icon: BugAntIcon, linkTo: "/servicios/control-plagas/roedores" },
-    { name: "Hormigas", description: "Control de invasiones en interiores y exteriores.", icon: BugAntIcon, linkTo: "/servicios/control-plagas/hormigas" },
-    { name: "Chinches de Cama", description: "Tratamientos especializados para su erradicación.", icon: BugAntIcon, linkTo: "/servicios/control-plagas/chinches" },
-    { name: "Avispas y Abejas", description: "Retirada segura de nidos y control.", icon: BugAntIcon, linkTo: "/servicios/control-plagas/avispas" },
-    { name: "Termitas y Carcoma", description: "Tratamientos preventivos y curativos para la madera.", icon: BugAntIcon, linkTo: "/servicios/control-plagas/madera" },
-    // Añade otras plagas relevantes (moscas, mosquitos, pulgas, etc.)
-];
+// --- NUEVO: Componente PestCard ---
+const PestCard = ({ name, description, icon: Icon, linkTo }) => {
+    const content = (
+        <div className="bg-white p-6 rounded-lg shadow border border-gray-200 flex items-center gap-4 h-full transition-shadow duration-300 hover:shadow-lg">
+            <Icon className="h-8 w-8 text-brand-emerald flex-shrink-0" />
+            <div>
+                <h3 className="font-semibold text-lg text-brand-dark">{name}</h3>
+                <p className="text-sm text-brand-dark opacity-80">{description}</p>
+            </div>
+        </div>
+    );
+
+    return linkTo ? (
+        <Link to={linkTo} className="block h-full">
+            {content}
+        </Link>
+    ) : (
+        <div className="h-full">
+            {content}
+        </div>
+    );
+};
+// --- FIN NUEVO Componente ---
 
 function PestControlPage() {
     return (
         <>
             <Helmet>
                 <title>Control Integral de Plagas - Limpiezas Univer</title>
+                {/* ¡Personaliza [Tu Ciudad/Área]! */}
                 <meta name="description" content="Servicios profesionales de fumigación y control de plagas (cucarachas, roedores, insectos) para hogares y empresas en [Tu Ciudad/Área]. Soluciones seguras y eficaces." />
-                {/* <meta name="keywords" content="control de plagas, fumigación, desinsectación, desratización, cucarachas, roedores, [Tu Ciudad]" /> */}
             </Helmet>
 
             <div className="space-y-12 md:space-y-16 overflow-x-hidden">
 
-                {/* --- Sección Hero Específica --- */}
+                {/* --- Sección Hero (sin cambios) --- */}
                 <motion.section
                     initial="hidden"
                     animate="visible"
@@ -59,7 +75,7 @@ function PestControlPage() {
                     </div>
                 </motion.section>
 
-                {/* --- Sección Plagas Comunes --- */}
+                {/* --- Sección Plagas Comunes (Usa PestCard) --- */}
                 <motion.section
                     variants={sectionVariants}
                     initial="hidden"
@@ -68,27 +84,15 @@ function PestControlPage() {
                 >
                     <h2 className="text-2xl md:text-3xl font-bold text-brand-dark mb-8 text-center">Plagas Comunes que Tratamos</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {/* Usamos el nuevo componente PestCard */}
                         {commonPests.map((pest) => (
-                            // Envolvemos en Link si tiene linkTo
-                            pest.linkTo ? (
-                                <Link key={pest.name} to={pest.linkTo} className="block hover:shadow-lg transition-shadow duration-300 rounded-lg">
-                                    <div className="bg-white p-6 rounded-lg shadow border border-gray-200 flex items-center gap-4 h-full">
-                                        <pest.icon className="h-8 w-8 text-brand-emerald flex-shrink-0" />
-                                        <div>
-                                            <h3 className="font-semibold text-lg text-brand-dark">{pest.name}</h3>
-                                            <p className="text-sm text-brand-dark opacity-80">{pest.description}</p>
-                                        </div>
-                                    </div>
-                                </Link>
-                            ) : (
-                                <div key={pest.name} className="bg-white p-6 rounded-lg shadow border border-gray-200 flex items-center gap-4 h-full">
-                                    <pest.icon className="h-8 w-8 text-brand-emerald flex-shrink-0" />
-                                    <div>
-                                        <h3 className="font-semibold text-lg text-brand-dark">{pest.name}</h3>
-                                        <p className="text-sm text-brand-dark opacity-80">{pest.description}</p>
-                                    </div>
-                                </div>
-                            )
+                            <PestCard
+                                key={pest.name} // Usar nombre como key (asumiendo unicidad)
+                                name={pest.name}
+                                description={pest.description}
+                                icon={pest.icon}
+                                linkTo={pest.linkTo}
+                            />
                         ))}
                     </div>
                     <p className="text-center mt-6 text-brand-dark opacity-80">
@@ -96,7 +100,7 @@ function PestControlPage() {
                     </p>
                 </motion.section>
 
-                {/* --- Sección Nuestro Enfoque --- */}
+                {/* --- Sección Nuestro Enfoque (sin cambios) --- */}
                 <motion.section
                     variants={sectionVariants}
                     initial="hidden"
@@ -117,14 +121,14 @@ function PestControlPage() {
                             <p className="text-sm text-brand-dark opacity-80">Utilizamos productos biocidas registrados y métodos de aplicación seguros para personas, mascotas y el medio ambiente.</p>
                         </div>
                         <div className="flex flex-col items-center md:items-start">
-                            <HomeModernIcon className="h-10 w-10 text-brand-emerald mb-3" /> {/* O BuildingOfficeIcon */}
+                            <HomeModernIcon className="h-10 w-10 text-brand-emerald mb-3" />
                             <h3 className="font-semibold text-lg mb-1 text-brand-dark">Prevención y Seguimiento</h3>
                             <p className="text-sm text-brand-dark opacity-80">Ofrecemos recomendaciones para evitar futuras infestaciones y realizamos seguimientos para garantizar la efectividad.</p>
                         </div>
                     </div>
                 </motion.section>
 
-                 {/* --- Sección CTA Específica --- */}
+                 {/* --- Sección CTA Específica (sin cambios) --- */}
                 <motion.section
                     variants={sectionVariants}
                     initial="hidden"

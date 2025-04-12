@@ -8,21 +8,13 @@ import {
 } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { cleaningServices, pestControlServices }  from '../data/cleaningServicesData';
+import { commonPests } from '../data/pestControlData';
 
-// Datos de servicios (sin cambios)
-const cleaningServices = [
-    { id: "office", icon: BuildingOffice2Icon, title: "Limpieza de Oficinas y Empresas", description: "Mantenimiento integral y personalizado para oficinas, locales comerciales y empresas.", methods: ["Limpieza diaria/semanal", "Mobiliario y equipos", "Aseos", "Cristales", "Suelos"], imageUrl: "https://picsum.photos/seed/oficinas/400/200", linkTo: "/servicios/limpieza-oficinas" },
-    { id: "community", icon: HomeIcon, title: "Limpieza de Comunidades y Hogares", description: "Servicios adaptados para portales, escaleras, zonas comunes y viviendas particulares.", methods: ["Portales y escaleras", "Ascensores", "Limpieza profunda", "Post-mudanza"], imageUrl: "https://picsum.photos/seed/hogares/400/200", /* linkTo: "/servicios/limpieza-comunidades" */ },
-    { id: "special", icon: SparklesIcon, title: "Limpiezas Especiales", description: "Soluciones para necesidades específicas: cristales en altura, tratamiento de suelos, tapicerías.", methods: ["Cristales en altura", "Pulido suelos", "Moquetas", "Garajes"], imageUrl: "https://picsum.photos/seed/especiales/400/200", /* linkTo: "/servicios/limpiezas-especiales" */ },
-    { id: "endofwork", icon: TrashIcon, title: "Limpieza Fin de Obra", description: "Dejamos tu espacio nuevo o reformado completamente limpio y listo para usar.", methods: ["Eliminación polvo fino", "Restos pintura/yeso", "Ventanas", "Desinfección"], imageUrl: "https://picsum.photos/seed/finobra/400/200", /* linkTo: "/servicios/limpieza-fin-obra" */ }
-];
 
-const pestControlServices = [
-    { id: "generalpests", icon: BugAntIcon, title: "Control Integral de Plagas", description: "Soluciones efectivas y seguras contra insectos, roedores y otras plagas comunes.", methods: ["Desinsectación", "Desratización", "Prevención", "Diagnóstico"], imageUrl: "https://picsum.photos/seed/plagas/400/200", linkTo: "/servicios/control-plagas" },
-    // { id: "cockroaches", icon: BugAntIcon, title: "Eliminación de Cucarachas", description: "Tratamientos específicos para erradicar cucarachas de forma segura.", methods: ["Gel cebo", "Pulverización", "Seguimiento"], imageUrl: "https://picsum.photos/seed/cucarachas/400/200", linkTo: "/servicios/control-plagas/cucarachas" },
-];
 
-// Componente ServiceCardWithLink (sin cambios)
+
+// Componente ServiceCardWithLink (Mejora en key)
 const ServiceCardWithLink = ({ icon: Icon, title, description, methods, imageUrl, linkTo, className = "" }) => {
     const cardContent = (
         <div className="bg-white rounded-lg shadow group hover:shadow-xl transition-all duration-300 border border-gray-200 overflow-hidden flex flex-col h-full">
@@ -44,8 +36,9 @@ const ServiceCardWithLink = ({ icon: Icon, title, description, methods, imageUrl
                     <div className="mt-auto pt-4 border-t border-gray-100">
                         <h3 className="font-medium text-brand-dark mb-2 text-sm">Incluye:</h3>
                         <ul className="list-disc list-inside text-brand-dark opacity-70 text-sm space-y-1">
-                            {methods.map((method, i) => (
-                                <li key={i}>{method}</li>
+                            {/* Usar 'method' como key si es único, sino el índice 'i' es fallback */}
+                            {methods.map((method) => (
+                                <li key={method}>{method}</li>
                             ))}
                         </ul>
                     </div>
@@ -87,27 +80,25 @@ function ServicesPage() {
         <>
             <Helmet>
                 <title>Nuestros Servicios - Limpieza y Control de Plagas - Limpiezas Univer</title>
-                <meta name="description" content="Explora nuestros servicios profesionales de limpieza (oficinas, comunidades, especiales) y control de organismos nocivos (plagas) en [Tu Ciudad/Área]." />
+                <meta name="description" content="Explora nuestros servicios profesionales de limpieza (oficinas, comunidades, especiales) y control de organismos nocivos (plagas) en todo Madrid." />
             </Helmet>
 
             <div className="space-y-12 md:space-y-16">
-                {/* Sección Título General - Con fondo degradado */}
+                {/* Sección Título General (sin cambios) */}
                 <motion.section
                     variants={sectionVariants}
                     initial="hidden"
                     animate="visible"
                     viewport={{ once: true }}
-                    // Añadimos el fondo degradado y padding
                     className="pt-12 pb-8 bg-gradient-to-b from-brand-ivory via-brand-ivory to-transparent"
                 >
                     <h1 className="text-3xl md:text-4xl font-bold mb-6 text-brand-dark text-center">Nuestros Servicios</h1>
                     <p className="text-center text-brand-dark opacity-90 mb-10 max-w-2xl mx-auto">
                         Ofrecemos soluciones integrales adaptadas a tus necesidades, tanto en limpieza profesional como en control efectivo de plagas. Explora nuestras categorías a continuación.
                     </p>
-
                 </motion.section>
 
-                {/* --- SECCIÓN: Limpieza Profesional --- */}
+                {/* --- SECCIÓN: Limpieza Profesional (sin cambios) --- */}
                 <motion.section
                     variants={sectionVariants}
                     initial="hidden"
@@ -115,9 +106,7 @@ function ServicesPage() {
                     viewport={{ once: true, amount: 0.1 }}
                     className="pt-8"
                 >
-                    {/* Título de sección mejorado con nuevo icono */}
                     <div className="flex items-center justify-center gap-3 mb-10">
-                        {/* Cambiamos el icono a SparklesIcon */}
                         <SparklesIcon className="h-8 w-8 text-yellow-300" />
                         <h2 className="text-2xl md:text-3xl font-semibold text-brand-dark text-center">
                             Limpieza Profesional
@@ -128,18 +117,13 @@ function ServicesPage() {
                         {cleaningServices.map((service) => (
                             <ServiceCardWithLink
                                 key={service.id}
-                                icon={service.icon}
-                                title={service.title}
-                                description={service.description}
-                                methods={service.methods}
-                                imageUrl={service.imageUrl}
-                                linkTo={service.linkTo}
+                                {...service} // Pasa todas las props del servicio
                             />
                         ))}
                     </div>
                 </motion.section>
 
-                {/* --- SECCIÓN: Control de Organismos Nocivos --- */}
+                {/* --- SECCIÓN: Control de Organismos Nocivos (sin cambios en layout por ahora) --- */}
                 <motion.section
                     variants={sectionVariants}
                     initial="hidden"
@@ -147,30 +131,23 @@ function ServicesPage() {
                     viewport={{ once: true, amount: 0.1 }}
                     className="pt-12"
                 >
-                     {/* Título de sección mejorado con nuevo icono */}
                     <div className="flex items-center justify-center gap-3 mb-10">
-                        
                         <ExclamationTriangleIcon className="h-8 w-8 text-red-300" />
                         <h2 className="text-2xl md:text-3xl font-semibold text-brand-dark text-center">
                             Control de Organismos Nocivos
                         </h2>
                         <ExclamationTriangleIcon className="h-8 w-8 text-red-300" />
                     </div>
-                    {/* Mantenemos la tarjeta única ocupando todo el ancho por ahora */}
-                    <div className="gap-8">
+                    {/* Mantenemos la tarjeta única ocupando un espacio central */}
+                    {/* Puedes usar max-w-lg o max-w-xl mx-auto para centrarla si es solo una */}
+                    <div className="max-w-xl mx-auto">
                         {pestControlServices.map((service) => (
                             <ServiceCardWithLink
                                 key={service.id}
-                                icon={service.icon}
-                                title={service.title}
-                                description={service.description}
-                                methods={service.methods}
-                                imageUrl={service.imageUrl}
-                                linkTo={service.linkTo}
+                                {...service} // Pasa todas las props
                             />
                         ))}
                     </div>
-                    {/* Enlace a sección plagas (sin cambios) */}
                     <div className="text-center mt-10">
                         <Link
                             to="/servicios/control-plagas"
@@ -179,10 +156,9 @@ function ServicesPage() {
                             Ver Todas las Soluciones de Control de Plagas &rarr;
                         </Link>
                     </div>
-
                 </motion.section>
 
-                {/* --- SECCIÓN: Nuestro Proceso --- */}
+                {/* --- SECCIÓN: Nuestro Proceso (sin cambios) --- */}
                 <motion.section
                     variants={sectionVariants}
                     initial="hidden"
@@ -192,7 +168,7 @@ function ServicesPage() {
                 >
                 <h2 className="text-3xl font-bold text-center mb-10 text-brand-dark">Nuestro Proceso Simplificado</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 text-center max-w-5xl mx-auto">
-                        {/* ... (Pasos del proceso sin cambios) ... */}
+                        {/* Pasos sin cambios */}
                         <div className="flex flex-col items-center">
                             <PhoneArrowUpRightIcon className="h-12 w-12 text-brand-emerald group-hover:text-brand-deep-forest mb-3 transition-colors duration-300" />
                             <h3 className="font-semibold text-brand-dark mb-1">1. Contacto</h3>
@@ -221,7 +197,7 @@ function ServicesPage() {
                     </div>
                 </motion.section>
 
-                {/* --- Sección CTA --- */}
+                {/* --- Sección CTA (sin cambios) --- */}
                 <motion.section
                     variants={sectionVariants}
                     initial="hidden"

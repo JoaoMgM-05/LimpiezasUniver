@@ -2,7 +2,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 // Importamos un icono para la nueva sección
-import { GlobeAltIcon } from '@heroicons/react/24/outline'; // O usa LeafIcon si prefieres
+import { FaEnvira } from "react-icons/fa6";
 
 function AboutPage() {
     return (
@@ -63,7 +63,7 @@ function AboutPage() {
                 {/* --- NUEVA SECCIÓN: Compromiso Ambiental --- */}
                 <section className="bg-brand-light p-8 rounded-lg shadow-inner flex flex-col md:flex-row items-center gap-6"> {/* Usamos brand-light para variar */}
                     <div className="flex-shrink-0">
-                        <GlobeAltIcon className="h-16 w-16 md:h-20 md:w-20 text-brand-emerald" /> {/* Icono más grande y en emerald */}
+                        <FaEnvira className="h-16 w-16 md:h-20 md:w-20 text-brand-emerald" /> {/* Icono más grande y en emerald */}
                     </div>
                     <div>
                         <h2 className="text-2xl font-semibold mb-3 text-brand-dark">Nuestro Compromiso Ambiental</h2>
